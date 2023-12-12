@@ -1,0 +1,26 @@
+### 게시글 전체 가져오기
+GET http://localhost:3000/board
+
+### 게시글 하나
+GET http://localhost:3000/board/1
+
+### 게시글 생성
+POST http://localhost:3000/board
+Content-Type: application/json
+
+{
+  "name":"siwan",
+  "contents":"Contents 123"
+}
+
+### 게시글 수정
+PUT http://localhost:3000/board/1
+Content-Type: application/json
+
+{
+  "name":"put 123124",
+  "contents":"put 1241251 5235"
+}
+
+### 게시글 삭제
+DELETE http://localhost:3000/board/1
