@@ -9,7 +9,7 @@ POST http://localhost:3000/board
 Content-Type: application/json
 
 {
-  "name":"siwan",
+  "name":"FF",
   "contents":"Contents 123"
 }
 
@@ -18,8 +18,7 @@ PUT http://localhost:3000/board/1
 Content-Type: application/json
 
 {
-  "name":"put 123124",
-  "contents":"put 1241251 5235"
+  "name":"put 123124"
 }
 
 ### 게시글 삭제

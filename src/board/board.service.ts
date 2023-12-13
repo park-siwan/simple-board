@@ -1,22 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Injectable()
 export class BoardService {
   private boards = [
     {
       id: 1,
-      title: 'hello world1',
-      content: 'Content 1',
+      name: 'hello world1',
+      contents: 'Content 1',
     },
     {
       id: 2,
-      title: 'hello world2',
-      content: 'Content 2',
+      name: 'hello world2',
+      contents: 'Content 2',
     },
     {
       id: 3,
-      title: 'hello world3',
-      content: 'Content 3',
+      name: 'hello world3',
+      contents: 'Content 3',
     },
   ];
   findAll() {
@@ -24,19 +26,19 @@ export class BoardService {
   }
 
   find(id: number) {
-    return this.boards.find((v) => v.id === Number(id));
+    return this.boards.find((v) => v.id === id);
   }
 
-  create(data) {
+  create(data: CreateBoardDto) {
     const newBoard = { id: this.getNextId(), ...data };
     this.boards.push(newBoard);
     return newBoard;
   }
 
-  update(id: number, data) {
+  update(id: number, data: UpdateBoardDto) {
     const index = this.getBoardIndex(id);
     if (index > -1) {
-      this.boards[index] = { id: this.boards[index].id, ...data };
+      this.boards[index] = { ...this.boards[index], ...data };
       return this.boards[index];
     }
     return null;
