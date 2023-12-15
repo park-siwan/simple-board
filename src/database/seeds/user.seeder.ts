@@ -1,4 +1,4 @@
-import { User } from 'src/entity/user.entity';
+import { User } from '../../entity/user.entity';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 export default class UserSeeder implements Seeder {
@@ -13,7 +13,7 @@ export default class UserSeeder implements Seeder {
       {
         username: 'fastcampus',
         name: 'hong gildong',
-        passwrod: 'fastcampus1234',
+        password: 'fastcampus1234',
       },
     ]);
   }
