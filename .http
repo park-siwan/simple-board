@@ -9,7 +9,7 @@ POST http://localhost:3000/board
 Content-Type: application/json
 
 {
-  "name":"FF",
+  "userId": 1,
   "contents":"Contents 123"
 }
 

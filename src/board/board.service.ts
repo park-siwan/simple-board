@@ -44,10 +44,14 @@ export class BoardService {
     return board;
   }
 
-  create(data: CreateBoardDto) {
-    const newBoard = { id: this.getNextId(), ...data };
-    this.boards.push(newBoard);
-    return newBoard;
+  async create(data: CreateBoardDto) {
+    //인스턴스 생성 후 저장 하는 방법
+    // const board = this.boardRepository.create(data);
+    // board.contents = 'bla bla'
+    // await this.boardRepository.save(board);
+
+    //바로 저장하는 방법
+    return this.boardRepository.save(data);
   }
 
   update(id: number, data: UpdateBoardDto) {
