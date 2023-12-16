@@ -18,7 +18,7 @@ PUT http://localhost:3000/board/1
 Content-Type: application/json
 
 {
-  "name":"put 123124"
+  "contents":"put 123124"
 }
 
 ### 게시글 삭제

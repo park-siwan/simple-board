@@ -12,23 +12,6 @@ export class BoardService {
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(Board) private boardRepository: Repository<Board>,
   ) {}
-  private boards = [
-    {
-      id: 1,
-      name: 'hello world1',
-      contents: 'Content 1',
-    },
-    {
-      id: 2,
-      name: 'hello world2',
-      contents: 'Content 2',
-    },
-    {
-      id: 3,
-      name: 'hello world3',
-      contents: 'Content 3',
-    },
-  ];
 
   async findAll() {
     return await this.boardRepository.find();
@@ -45,39 +28,26 @@ export class BoardService {
   }
 
   async create(data: CreateBoardDto) {
-    //인스턴스 생성 후 저장 하는 방법
-    // const board = this.boardRepository.create(data);
-    // board.contents = 'bla bla'
-    // await this.boardRepository.save(board);
-
-    //바로 저장하는 방법
     return this.boardRepository.save(data);
   }
 
-  update(id: number, data: UpdateBoardDto) {
-    const index = this.getBoardIndex(id);
-    if (index > -1) {
-      this.boards[index] = { ...this.boards[index], ...data };
-      return this.boards[index];
-    }
-    return null;
+  async update(id: number, data: UpdateBoardDto) {
+    const board = await this.getBoardById(id);
+    if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+    return this.boardRepository.update(id, {
+      ...data,
+    });
   }
 
-  delete(id: number) {
-    const index = this.getBoardIndex(id);
-    if (index > -1) {
-      const deleteBoard = this.boards[index];
-      this.boards.splice(index, 1);
-      return deleteBoard;
-    }
-    return null;
+  async delete(id: number) {
+    const board = await this.getBoardById(id);
+    if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+    return this.boardRepository.remove(board);
   }
 
-  getBoardIndex(id: number) {
-    return this.boards.findIndex((v) => v.id === Number(id));
-  }
-
-  getNextId() {
-    return this.boards.sort((a, b) => b.id - a.id)[0].id + 1;
+  async getBoardById(id: number) {
+    return await this.boardRepository.findOneBy({
+      id,
+    });
   }
 }
