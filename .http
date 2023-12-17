@@ -35,7 +35,16 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-  "username":"fastcampus2023",
+  "username":"fastcampus2024",
   "name":"fastcampusname",
+  "password":"fastcampuspassword"
+}
+### 로그인
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+  "username":"fastcampus2024",
   "password":"fastcampuspassword"
 }
