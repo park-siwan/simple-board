@@ -14,8 +14,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hb
 }
 
 ### 게시글 수정
-PUT http://localhost:3000/board/1
+PUT http://localhost:3000/board/5
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJmYXN0Y2FtcHVzMjAyNCIsIm5hbWUiOiJmYXN0Y2FtcHVzbmFtZSIsImlhdCI6MTcwMjgyNjcyNCwiZXhwIjoxNzAyODMwMzI0fQ.PW8Cbosjd4kVPPTVvExRIuBtiUyoipxQjusWo6qTgcw
 
 {
   "contents":"put 123124"

@@ -44,15 +44,18 @@ export class BoardController {
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   update(
+    @UserInfo() userInfo,
     @Param('id', ParseIntPipe) id: number,
     @Body(new ValidationPipe()) data: UpdateBoardDto,
   ) {
-    return this.boardService.update(id, data);
+    return this.boardService.update(userInfo.id, id, data);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.boardService.delete(id);
+  @UseGuards(JwtAuthGuard)
+  remove(@UserInfo() userInfo, @Param('id', ParseIntPipe) id: number) {
+    return this.boardService.delete(userInfo.id, id);
   }
 }
